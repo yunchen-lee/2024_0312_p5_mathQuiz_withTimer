@@ -32,12 +32,36 @@ function setup() {
         quiz.setup();
     });
 
+    console.log(zh_btn.position)
+
 }
 
 
 function draw() {
     background(220);
     quiz.draw();
+
+    // draw language setting
+    if (quiz.inputLang == 'zh-CN') {
+        push();
+        noFill();
+        stroke(0);
+        strokeWeight(4);
+        let x = width / 2 - 60 + 1;
+        let y = 99 + 28;
+        line(x, y, x + 40, y);
+        pop();
+    } else {
+        push();
+        noFill();
+        stroke(0);
+        strokeWeight(4);
+        let x = width / 2 - 10;
+        let y = 100 + 28;
+        line(x, y, x + 60, y);
+        pop();
+    }
+
 }
 
 
@@ -201,24 +225,6 @@ class Quiz {
         }
 
 
-        // draw language setting
-        if (this.inputLang == 'zh-CN') {
-            push();
-            noFill();
-            stroke(0);
-            strokeWeight(4);
-            let y = -260;
-            line(-59, y, -19, y);
-            pop();
-        } else {
-            push();
-            noFill();
-            stroke(0);
-            strokeWeight(4);
-            let y = -260;
-            line(-10, y, 50, y);
-            pop();
-        }
 
 
         pop();
