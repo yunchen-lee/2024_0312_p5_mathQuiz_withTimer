@@ -7,7 +7,7 @@ This is an online webpage for practicing basic math operation speed. Click on th
 
 這是一個練習基礎數學運算速度的線上網頁，點擊網頁開始用語音搶答🎙️
 - **適合年紀**：7~12歲🤓
-- **測試方式**：每次測試二十題，包含加法、減法、乘法，以語音搶答，提供中文:🇹🇼:與英文:🇬🇧:兩種模式 (使用前請允許瀏覽器存取麥克風)
+- **測試方式**：每次測試二十題，包含加法、減法、乘法，以語音搶答，提供中文:🇹🇼:與英文:gb:兩種模式 (使用前請允許瀏覽器存取麥克風)
 
 ![image](https://github.com/yunchen-lee/2024_0312_p5_mathQuiz_withTimer/blob/main/ref-01.png)
 
