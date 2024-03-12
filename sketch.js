@@ -28,11 +28,10 @@ function setup() {
     });
 
     en_btn.mousePressed(() => {
-        quiz.inputLang = 'en_GB';
+        quiz.inputLang = 'en-GB';
         quiz.setup();
     });
 
-    console.log(zh_btn.position)
 
 }
 
@@ -73,6 +72,7 @@ class Quiz {
         this.quizes = [];
         this.answers = [];
         this.answers_zh = [];
+        this.answers_en = [];
         this.indexList = [];
         this.index;
         this.counter;
@@ -91,6 +91,7 @@ class Quiz {
         this.quizes = [];
         this.answers = [];
         this.answers_zh = [];
+        this.answers_en = [];
         this.indexList = [];
         this.input = 'GO!';
 
@@ -117,6 +118,9 @@ class Quiz {
                 this.answers_zh.push(this.numToZh(a_sub));
                 this.answers_zh.push(this.numToZh(a_mul));
 
+                this.answers_en.push(this.numToEn(a_add));
+                this.answers_en.push(this.numToEn(a_sub));
+                this.answers_en.push(this.numToEn(a_mul));
             }
         }
 
@@ -163,12 +167,29 @@ class Quiz {
         return (result);
     }
 
-    // numToEn(num) {
-    //     let len = num.length;
-    //     let ennum_zero2nine = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-    //     let ennum_teen = ['eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
-    //     let ennum_ty = ['', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
-    // }
+    numToEn(num) {
+        let len = num.length;
+        let ennum_zero2nine = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+        let ennum_teen = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+        let ennum_ty = ['ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+        let result = '';
+        for (let i = len - 1; i > -1; i--) {
+            if (i == len - 1) {
+                if (num[i] != 0)
+                    result = "".concat(ennum_zero2nine[num[i]], result)
+            } else {
+
+                if (num[i] == 1) {
+                    result = ennum_teen[num[i + 1]];
+                } else {
+                    result = ennum_ty[num[i] - 1].concat(' ', result);
+                }
+            }
+        }
+
+        return result;
+    }
 
 
 
@@ -256,6 +277,8 @@ function gotSpeech() {
         if (m == null) {
             if (quiz.inputLang == 'zh-CN') {
                 m = match(speechRec.resultString, quiz.answers_zh[quiz.index]);
+            } else if (quiz.inputLang == 'en-GB') {
+                m = match(speechRec.resultString, quiz.answers_en[quiz.index]);
             }
         }
         if (m != null) {
